@@ -1,0 +1,31 @@
+.userlistElement {
+	padding: 0px;
+	margins: 0px;
+}
+
+#pnlMain {
+	display: table;
+	float: left;
+	overflow: hidden;
+}
+
+#pnlMain>div {
+	float: left;
+	border: 1px solid black;
+	display: table-cell;
+	padding: 1em;
+	height: 24em;
+	max-height: 24em;
+}
+
+#pnlChatHistory {
+	width: 25em;
+	max-width: 25em;
+}
+
+#pnlUserList {
+	max-height: 24em;
+	width: 7em;
+	max-width: 7em;
+	overflow: scroll;
+}
