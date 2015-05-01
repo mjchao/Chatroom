@@ -8,20 +8,25 @@
 		<style type="text/css">
 			#pnlMain {
 				display: table;
+				float: left;
+				overflow: hidden;
 			}
 		
 			#pnlMain>div {
+				float: left;
 				border: 1px solid black;
 				display: table-cell;
 				padding: 1em;
+				height: 24em;
 			}
 			
 			#pnlChatHistory {
-				width: 75%;
+				max-height: 24em;
 			}
 			
 			#pnlUserList {
-				width: 25%;
+				max-height: 24em;
+				overflow: scroll;
 			}
 			
 		</style>
@@ -47,6 +52,8 @@
 				<input type="button" name="cmdUser2" value="User2"/><br />
 			</div>
 		</div>
+		<input type="button" name="cmdTest" value="Test" onclick="test();" />
+		
 		
 		<script type="text/javascript">
 			window.onload = showDisplayName();
@@ -94,6 +101,30 @@
 				var displayName = formInput.substring( formInput.indexOf( "displayName=" )+12 , formInput.length );
 				var lblDisplayName = document.getElementById( "lblDisplayName" );
 				lblDisplayName.innerHTML = "Logged in as <span class=\"displayNameText\">" + displayName + "</span>";
+			}
+			
+			function privateMessage( username ) {
+				alert( "Private messaging " + username );
+			}
+			
+			function addUserToUserList( username ) {
+				var newUser = document.createElement( "input" );
+				newUser.type = "button";
+				newUser.value = username;
+				newUser.name = username;
+				newUser.onclick = function() {
+					privateMessage( username );
+				}
+				
+				var userList = document.getElementById( "pnlUserList" );
+				userList.appendChild( newUser );
+				userList.appendChild( document.createElement( "br" ) );
+				
+			}
+			
+			var nextId=2;
+			function test() {
+				addUserToUserList( "User " + nextId );
 			}
 		</script>
 	</body>
