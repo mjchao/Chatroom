@@ -1,0 +1,15 @@
+form {
+	padding: 5px;
+	border: 1px solid black;
+}
+
+div {
+	padding: 2.5px;
+	margin: 5px;
+}
+
+.displayNameText {
+	color: blue;
+	font-weight: bold;
+	font-family: Times , serif;
+}
