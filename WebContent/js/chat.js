@@ -1,7 +1,12 @@
-window.onload = showDisplayName();
+window.onload = loadDisplayName();
 
 var VK_ENTER = 13
 
+/**
+ * Sends the given message to the server.
+ * 
+ * @param message the message to send to the server
+ */
 function sendMessage( message ) {
 	
 	//do not send empty messages to the chat server
@@ -10,6 +15,13 @@ function sendMessage( message ) {
 	}
 }
 
+/**
+ * Triggered when the user presses a key with the message box
+ * in focus. If the user pressed "Enter", then the message in the
+ * message box will be sent to the server as a chatroom message.
+ * 
+ * @param e properties regarding the keypress event
+ */
 function txtMessage_KeyPress( e ) {
 	if ( !e ) {
 		e = window.event;
@@ -20,19 +32,26 @@ function txtMessage_KeyPress( e ) {
 	}
 }
 
+/**
+ * Triggered when the user clicks "Send". Sends the user's message to the server.
+ */
 function cmdSend_Click() {
 	var message = document.getElementById( "txtMessage" ).value;
 	sendMessage( message );
-	
-	//clear the message text box
 	txtMessage.value = ""
 }
 
+/**
+ * Logs the user out of the chatroom.
+ */
 function cmdLogout_Click() {
 	window.location.href = "login.html"
 }
 
-function showDisplayName() {
+/**
+ * Loads the user's display name onto the web page.
+ */
+function loadDisplayName() {
 	var formInput = window.location.search;
 	
 	//replace all "+"s with " "s
@@ -45,54 +64,62 @@ function showDisplayName() {
 	lblDisplayName.innerHTML = "Logged in as <span class=\"displayNameText\">" + displayName + "</span>";
 }
 
+/**
+ * Allows the user to private message the given user.
+ * 
+ * @param username the user to private message
+ */
 function privateMessage( username ) {
+	//TODO put "/[username]" in the message box
 	alert( "Private messaging " + username );
 }
 
-function addUserToUserList( username ) {
-	/*var newUser = document.createElement( "input" );
-	newUser.type = "button";
-	newUser.value = username;
-	newUser.name = username;
-	newUser.onclick = function() {
+/**
+ * Adds the given user to the list of active users in the chatroom.
+ * 
+ * @param username a user to add to the user list
+ */
+function addUserToUserList( username ) {	
+	var userBox = document.createElement( "div" );
+	userBox.setAttribute( "id" , username );
+	userBox.setAttribute( "class" , "userlistElement" );
+	
+	var userButton = document.createElement( "input" );
+	userButton.type = "button";
+	userButton.value = username;
+	userButton.onclick = function() {
 		privateMessage( username );
 	}
-	
-	var lineBreak = document.createElement( "br" );
-	//br.id = "br" + username;
+	userBox.appendChild( userButton );
 	
 	var userList = document.getElementById( "pnlUserList" );
-	userList.appendChild( newUser );
-	userList.appendChild( lineBreak );*/
-	
-	var div = document.createElement( "div" );
-	div.setAttribute( "id" , username );
-	div.setAttribute( "class" , "userlistElement" );
-	
-	var button = document.createElement( "input" );
-	button.type = "button";
-	button.value = username;
-	button.onclick = function() {
-		privateMessage( username );
-	}
-	div.appendChild( button );
-	
-	var userList = document.getElementById( "pnlUserList" );
-	userList.appendChild( div );
-	
+	userList.appendChild( userBox );
 }
 
+/**
+ * Removes the given user from the user list.
+ * 
+ * @param username the user to remove from the user list
+ */
 function removeUserFromUserList( username ) {
 	var toRemove = document.getElementById( username );
 	toRemove.parentNode.removeChild( toRemove );
 }
 
+//used for testing
 var nextId=2;
+
+/**
+ * Tests the add user to user list functionality.
+ */
 function test() {
 	addUserToUserList( "User" + nextId );
 	nextId += 1;
 }
 
+/**
+ * Tests the remove user from user list functionality.
+ */
 function test2() {
 	var username = prompt( "Enter Username to remove from list: " );
 	removeUserFromUserList( username );
