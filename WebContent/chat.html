@@ -4,36 +4,8 @@
 		<title>Chatroom</title>
 		
 		<link href="css/styles.css" type="text/css" rel="stylesheet" />
+		<link href="css/chat.css" type="text/css" rel="stylesheet" />
 		
-		<style type="text/css">
-			#pnlMain {
-				display: table;
-				float: left;
-				overflow: hidden;
-			}
-		
-			#pnlMain>div {
-				float: left;
-				border: 1px solid black;
-				display: table-cell;
-				padding: 1em;
-				height: 24em;
-				max-height: 24em;
-			}
-			
-			#pnlChatHistory {
-				width: 25em;
-				max-width: 25em;
-			}
-			
-			#pnlUserList {
-				max-height: 24em;
-				width: 7em;
-				max-width: 7em;
-				overflow: scroll;
-			}
-			
-		</style>
 	</head>
 	<body>
 		<div id="pnlMain">
@@ -52,12 +24,10 @@
 			</div>
 			<div id="pnlUserList">
 				<label id="lblUserList">Active Users</label><br />
-				<input type="button" name="cmdUser1" value="User1"/><br />
-				<input type="button" name="cmdUser2" value="User2"/><br />
 			</div>
 		</div>
-		<input type="button" name="cmdTest" value="Test" onclick="test();" />
-		
+		<input type="button" name="cmdTest" value="Add User" onclick="test();" />
+		<input type="button" name="cmdTest2" value="Remove User" onclick="test2();"/>
 		
 		<script type="text/javascript">
 			window.onload = showDisplayName();
@@ -112,7 +82,7 @@
 			}
 			
 			function addUserToUserList( username ) {
-				var newUser = document.createElement( "input" );
+				/*var newUser = document.createElement( "input" );
 				newUser.type = "button";
 				newUser.value = username;
 				newUser.name = username;
@@ -120,16 +90,44 @@
 					privateMessage( username );
 				}
 				
+				var lineBreak = document.createElement( "br" );
+				//br.id = "br" + username;
+				
 				var userList = document.getElementById( "pnlUserList" );
 				userList.appendChild( newUser );
-				userList.appendChild( document.createElement( "br" ) );
+				userList.appendChild( lineBreak );*/
 				
+				var div = document.createElement( "div" );
+				div.setAttribute( "id" , username );
+				div.setAttribute( "class" , "userlistElement" );
+				
+				var button = document.createElement( "input" );
+				button.type = "button";
+				button.value = username;
+				button.onclick = function() {
+					privateMessage( username );
+				}
+				div.appendChild( button );
+				
+				var userList = document.getElementById( "pnlUserList" );
+				userList.appendChild( div );
+				
+			}
+			
+			function removeUserFromUserList( username ) {
+				var toRemove = document.getElementById( username );
+				toRemove.parentNode.removeChild( toRemove );
 			}
 			
 			var nextId=2;
 			function test() {
-				addUserToUserList( "User user user user user" + nextId );
+				addUserToUserList( "User" + nextId );
 				nextId += 1;
+			}
+			
+			function test2() {
+				var username = prompt( "Enter Username to remove from list: " );
+				removeUserFromUserList( username );
 			}
 		</script>
 	</body>
