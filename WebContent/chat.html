@@ -37,7 +37,7 @@
 					<textarea name="txtChatHistory" rows="20" cols="50" readonly="readonly"></textarea>
 				</div>
 				<div id="pnlSend">
-					<input type="text" name="txtMessage" size="50" placeholder="Enter message" onkeypress="txtMessage_KeyPress( event )"/>
+					<input type="text" id="txtMessage" name="txtMessage" size="50" placeholder="Enter message" onkeypress="txtMessage_KeyPress( event )"/>
 					<input type="button" name="cmdSend" value="Send" onclick="cmdSend_Click();"/>	
 				</div>
 			</div>
@@ -72,7 +72,7 @@
 			}
 		
 			function cmdSend_Click() {
-				var message = txtMessage.value;
+				var message = document.getElementById( "txtMessage" ).value;
 				sendMessage( message );
 				
 				//clear the message text box
