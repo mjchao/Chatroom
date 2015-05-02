@@ -4,28 +4,20 @@
 }
 
 #pnlMain {
-	display: table;
-	float: left;
-	overflow: hidden;
+    white-space: nowrap;
 }
 
 #pnlMain>div {
-	float: left;
+	display: inline-block;
+	overflow: auto;
 	border: 1px solid black;
-	display: table-cell;
-	padding: 1em;
-	height: 24em;
-	max-height: 24em;
+	height: 25em;
 }
 
 #pnlChatHistory {
 	width: 25em;
-	max-width: 25em;
 }
 
 #pnlUserList {
-	max-height: 24em;
-	width: 7em;
-	max-width: 7em;
-	overflow: scroll;
+	width: 10em;
 }
