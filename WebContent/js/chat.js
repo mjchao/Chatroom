@@ -1,17 +1,16 @@
-window.onload = loadDisplayName();
-
 var VK_ENTER = 13
+var displayName = "???";
 
 /**
  * Sends the given message to the server.
  * 
  * @param message the message to send to the server
  */
-function sendMessage( message ) {
+function sendChatMessage( message ) {
 	
 	//do not send empty messages to the chat server
 	if ( message != "") {
-		alert( "Sending message to server: " + message );
+		sendMessage( "<CHAT> " + displayName + ": " + message );
 	}
 }
 
@@ -37,7 +36,7 @@ function txtMessage_KeyPress( e ) {
  */
 function cmdSend_Click() {
 	var message = document.getElementById( "txtMessage" ).value;
-	sendMessage( message );
+	sendChatMessage( message );
 	txtMessage.value = ""
 }
 
@@ -46,6 +45,7 @@ function cmdSend_Click() {
  */
 function cmdLogout_Click() {
 	window.location.href = "login.html"
+	websocket.disconnect();
 }
 
 /**
@@ -59,9 +59,11 @@ function loadDisplayName() {
 		formInput = formInput.replace( "+" , " " );
 	}
 	
-	var displayName = formInput.substring( formInput.indexOf( "displayName=" )+12 , formInput.length );
+	var username = formInput.substring( formInput.indexOf( "displayName=" )+12 , formInput.length );
 	var lblDisplayName = document.getElementById( "lblDisplayName" );
-	lblDisplayName.innerHTML = "Logged in as <span class=\"displayNameText\">" + displayName + "</span>";
+	lblDisplayName.innerHTML = "Logged in as <span class=\"displayNameText\">" + username + "</span>";
+	displayName = username;
+	validateLogin();
 }
 
 /**
@@ -104,23 +106,4 @@ function addUserToUserList( username ) {
 function removeUserFromUserList( username ) {
 	var toRemove = document.getElementById( username );
 	toRemove.parentNode.removeChild( toRemove );
-}
-
-//used for testing
-var nextId=2;
-
-/**
- * Tests the add user to user list functionality.
- */
-function test() {
-	addUserToUserList( "User" + nextId );
-	nextId += 1;
-}
-
-/**
- * Tests the remove user from user list functionality.
- */
-function test2() {
-	var username = prompt( "Enter Username to remove from list: " );
-	removeUserFromUserList( username );
 }

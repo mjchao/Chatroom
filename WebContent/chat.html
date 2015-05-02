@@ -15,7 +15,7 @@
 					<input type="button" name="cmdLogout" value="Logout" onclick="cmdLogout_Click()"/>
 				</div>
 				<div id="pnlChatHistory">
-					<textarea name="txtChatHistory" rows="20" cols="50" readonly="readonly"></textarea>
+					<textarea id="txtChatHistory" name="txtChatHistory" rows="20" cols="50" readonly="readonly"></textarea>
 				</div>
 				<div id="pnlSend">
 					<input type="text" id="txtMessage" name="txtMessage" size="50" placeholder="Enter message" onkeypress="txtMessage_KeyPress( event )"/>
@@ -26,9 +26,8 @@
 				<label id="lblUserList">Active Users</label><br />
 			</div>
 		</div>
-		<input type="button" name="cmdTest" value="Add User" onclick="test();" />
-		<input type="button" name="cmdTest2" value="Remove User" onclick="test2();"/>
 		
+		<script type="text/javascript" src="js/connection.js"></script>
 		<script type="text/javascript" src="js/chat.js"></script>
 	</body>
 </html>
