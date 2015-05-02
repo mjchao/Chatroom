@@ -10,7 +10,9 @@
 #pnlMain>div {
 	display: inline-block;
 	overflow: auto;
-	border: 1px solid black;
+	border: 3px solid black;
+	border-color: blue;
+	-webkit-border-radius: 10px;
 	height: 25em;
 }
 
@@ -20,4 +22,10 @@
 
 #pnlUserList {
 	width: 10em;
+}
+
+#lblUserList {
+	display: block;
+	text-align: center;
+	font-weight: bold;
 }
