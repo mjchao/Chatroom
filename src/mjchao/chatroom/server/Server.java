@@ -37,7 +37,13 @@ public class Server {
 	
 	public void processMessage( String message , Session s ) {
 		System.out.println( "Processing message: " + message );
-		String messageType = message.substring( 0 ,  message.indexOf( " " ) );
+		String messageType = "";
+		if ( message.indexOf( " " ) != -1 ) {
+			messageType = message.substring( 0 ,  message.indexOf( " " ) );
+		}
+		else {
+			messageType = message;
+		}
 		String[] messageTokens = message.split( " " );
 		if ( messageType.equals( "<CHAT>" ) ) {
 			synchronized( clients ) {
@@ -98,6 +104,11 @@ public class Server {
 							client.displayName = displayName;
 						}
 					}
+					for ( ClientData client : clients ) {
+						if ( !client.displayName.equals( "" ) && !client.displayName.equals( displayName ) ) {
+							client.write( "<ADD_USER> " + displayName );
+						}
+					}
 				}
 				else {
 					try {
@@ -108,6 +119,16 @@ public class Server {
 					}
 				}
 
+			}
+		}
+		else if ( messageType.equals( "<USER_LIST>" ) ) {
+			for ( ClientData client : clients ) {
+				try {
+					s.getBasicRemote().sendText( "<ADD_USER> " + client.displayName );
+				}
+				catch ( IOException e ) {
+					//ignore
+				}
 			}
 		}
 	}
@@ -122,11 +143,18 @@ public class Server {
 	
 	@OnClose
 	public void onClose( Session s ) {
-		System.out.println( "Lost a client" );
+		String displayName = "";
 		for ( int i=0 ; i<clients.size() ; i++ ) {
 			if ( clients.get( i ).s.equals( s ) ) {
+				displayName = clients.get( i ).displayName;
 				clients.remove( i );
-				return;
+				System.out.println( "Lost a client" );
+				break;
+			}
+		}
+		if ( !displayName.equals( "" ) ) {
+			for ( ClientData client : clients ) {
+				client.write( "<REMOVE_USER> " + displayName );
 			}
 		}
 	}

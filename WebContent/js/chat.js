@@ -75,35 +75,3 @@ function privateMessage( username ) {
 	//TODO put "/[username]" in the message box
 	alert( "Private messaging " + username );
 }
-
-/**
- * Adds the given user to the list of active users in the chatroom.
- * 
- * @param username a user to add to the user list
- */
-function addUserToUserList( username ) {	
-	var userBox = document.createElement( "div" );
-	userBox.setAttribute( "id" , username );
-	userBox.setAttribute( "class" , "userlistElement" );
-	
-	var userButton = document.createElement( "input" );
-	userButton.type = "button";
-	userButton.value = username;
-	userButton.onclick = function() {
-		privateMessage( username );
-	}
-	userBox.appendChild( userButton );
-	
-	var userList = document.getElementById( "pnlUserList" );
-	userList.appendChild( userBox );
-}
-
-/**
- * Removes the given user from the user list.
- * 
- * @param username the user to remove from the user list
- */
-function removeUserFromUserList( username ) {
-	var toRemove = document.getElementById( username );
-	toRemove.parentNode.removeChild( toRemove );
-}
