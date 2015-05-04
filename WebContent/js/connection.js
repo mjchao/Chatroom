@@ -22,7 +22,7 @@ function onError( event ) {
 }
 
 function onOpen( event ) {
-	alert( "Successfully connected to server" );
+	alert( "Successfully connected to server\u00D0" );
 	
 	loadDisplayName();
 	requestUserList();
@@ -56,6 +56,7 @@ function processMessage( message ) {
 		var txtChatHistory = document.getElementById( "txtChatHistory" );
 		var messageContents = message.substring( 7 , message.length );
 		txtChatHistory.value += messageContents + "\n";
+		txtChatHistory.scrollTop = txtChatHistory.scrollHeight;
 	}
 	else if ( messageTag == "<ADD_USER>" ) {
 		
@@ -79,6 +80,13 @@ function processMessage( message ) {
 		}
 
 		removeUserFromUserList( usernameToRemove );
+	}
+	else if ( message.lastIndexOf( "<PM>" , 0 ) === 0 ) {
+		messageTokens = message.split( "\u00D0" );
+		var txtChatHistory = document.getElementById( "txtChatHistory" );
+		var sender = messageTokens[ 1 ];
+		var messageContents = messageTokens[ 2 ];
+		txtChatHistory.value += "PM from " + sender + ": " + messageContents + "\n";
 	}
 }
 

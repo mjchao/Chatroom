@@ -45,6 +45,9 @@ public class Server {
 			messageType = message;
 		}
 		String[] messageTokens = message.split( " " );
+		if ( message.startsWith( "<PM>" ) ) {
+			messageType = "<PM>";
+		}
 		if ( messageType.equals( "<CHAT>" ) ) {
 			synchronized( clients ) {
 				for ( ClientData client : clients ) {
@@ -60,15 +63,14 @@ public class Server {
 					break;
 				}
 			}
+			messageTokens = message.split( "\u00D0" );
 			String recipient = messageTokens[ 1 ];
-			StringBuffer messageContent = new StringBuffer( "" );
-			for ( String str : messageTokens ) {
-				messageContent.append( str );
-			}
+			String messageContent = messageTokens[ 2 ];
 			synchronized( clients ) {
 				for ( ClientData client : clients ) {
 					if ( client.displayName.equals( recipient ) ) {
-						client.write( "<PM> " + sender + " " + messageContent.toString() );
+						client.write( "<PM>" + "\u00D0" + sender + "\u00D0" + messageContent.toString() );
+						break;
 					}
 				}
 			}

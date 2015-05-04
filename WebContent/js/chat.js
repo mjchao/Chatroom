@@ -72,6 +72,12 @@ function loadDisplayName() {
  * @param username the user to private message
  */
 function privateMessage( username ) {
-	//TODO put "/[username]" in the message box
-	alert( "Private messaging " + username );
+
+	var message = prompt( "Enter message to: " + username );
+	if ( message != null && message != "" ) {
+		var txtChatHistory = document.getElementById( "txtChatHistory" );
+		txtChatHistory.value += "PM to " + username + ": " + message + "\n";
+		txtChatHistory.scrollTop = txtChatHistory.scrollHeight;
+		sendMessage( "<PM>" + "\u00D0" + username + "\u00D0" + message );
+	}
 }
