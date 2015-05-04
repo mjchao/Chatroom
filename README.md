@@ -9,4 +9,8 @@ To run this program, import the project into Eclipse. Then
 2. Open login.html in your browser.
 3. Login with your desired display name.
 
-And you can use the chatroom. I will try to figure out how to get the websockets to connect to remote machines.
+And you can use the chatroom. 
+
+This chatroom has been tested with Internet Explorer 10, Firefox v. 37.0.2, and Google Chrome v. 42.0.2311.135 m.
+
+I will also try to figure out how to get the websockets to connect to remote machines.
