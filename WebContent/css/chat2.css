@@ -1,0 +1,108 @@
+#lblConnection {
+	margin: 5px;	
+}
+
+textarea {
+	font-family: Times;
+	font-size: 12pt;
+	broder: 1px solid gray;
+	border-radius: 5px;
+}
+
+textarea:focus {
+	box-shadow: 1px 1px 1px 1px gray;	
+}
+
+input[type="text"] {
+	font-family: Times;
+	font-size: 12pt;
+	border: 1px solid gray;
+	border-radius: 5px;
+}
+
+input[type="text"]:focus {
+	box-shadow: 1px 1px 1px 1px gray;
+}
+
+input[type="button"] {
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#cmdSend {
+	font-family: Verdana;
+	width: 7em;
+	background-color: gray;
+	color: white;
+	box-shadow: 1px 1px 1px 1px gray;
+}
+
+#cmdSend:hover {
+	box-shadow: 2px 2px 2px 2px gray;
+}
+
+#cmdSend:active {
+	box-shadow: none;
+}
+
+.heading {
+	position: absolute;
+	width: 15em;
+	background-color: white;
+	text-align: center;
+	font-weight: bold;
+	padding: 0.5em 0em 0.5em 0em;
+}
+
+.outerPanel {
+	border-radius: 10px;
+	box-shadow: 1px 1px 1px 1px gray;
+	border: 1px solid gray;
+}
+
+#pnlContainer {
+	whitespace: no-wrap;
+	overflow: auto;
+}
+
+#pnlCenter {
+	float: left;
+	padding: 1em;
+	margin: 0.25em;
+	max-width: 50em;
+	max-height: 50em;
+	overflow: auto;
+}
+
+#pnlUserList {
+	width: 15em;
+	height: 25.5em;
+	padding: 0em 1em 1em 1em;
+	margin: 0.25em;
+	overflow: auto;
+}
+
+.username {
+	min-width: 13.5em;
+	text-align: left;
+	font-family: Times;
+	font-size: 12pt;
+	background-color: white;
+	padding: 0px;
+	border: 1px solid white;
+	cursor: pointer;
+	box-shadow: 1px 1px 1px 1px white;
+	margin: 1px;
+}
+
+.username:hover {
+	border: 1px solid gray;
+	border-radius: 5px;
+	background-color: gray;
+	box-shadow: 1px 1px 1px 1px gray;
+	color: white;
+}
+
+.username:active {
+	box-shadow: 1px 1px 1px 1px white;
+}

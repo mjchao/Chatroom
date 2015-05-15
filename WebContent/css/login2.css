@@ -1,0 +1,64 @@
+fieldset {
+	width: 22em;
+	border: none;
+	border-radius: 10px;
+	box-shadow: 2px 2px 2px 2px gray;
+	background-color: lightblue;
+}
+
+.legend {
+	font-family: Arial;
+	font-weight: bold;
+	text-align: center;
+}
+
+.title {
+	float: left;
+	width: 10em;
+	clear: left;
+	padding: 0.25em;
+}
+
+.field {
+	font-family: Times;
+	font-size: 12pt;
+	width: 10em;
+	border: 0.1em solid gray;
+	padding: 0.25em;
+	border-radius: 5px;
+	background-color: rgb(240,240,240);
+}
+
+a {
+	text-align: center;
+}
+
+.commandPanel {
+	text-align: center;	
+}
+
+.field:focus {
+	box-shadow: 1px 1px 1px 1px gray;
+}
+
+input[type="submit"] {
+	width: 20em;
+	height: 2.25em;
+	font-family: Verdana;
+	background-color: gray;
+	color: white;
+	padding: 0.5px;
+	cursor: pointer;
+	border-radius: 5px;
+	box-shadow: 1px 1px 1px 1px gray;
+	margin: 0.5em;
+}
+
+input[type="submit"]:hover {
+	box-shadow: 2px 2px 2px 2px gray;
+}
+
+input[type="submit"]:active {
+	box-shadow: none;
+}
+
